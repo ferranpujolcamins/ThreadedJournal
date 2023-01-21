@@ -1,4 +1,5 @@
 use dioxus::prelude::*;
+use dioxus_desktop::Config;
 use fermi::prelude::*;
 
 mod model;
@@ -26,9 +27,18 @@ static ENTRIES: Atom<Vec<Entry>> = |_| {
 fn app(cx: Scope) -> Element {
     use_init_atom_root(cx);
     let entries = use_read(cx.scope, ENTRIES);
-    cx.render(rsx!(entries.iter().map(|e| rsx!(Entry { entry: e }))))
+    cx.render(rsx!(
+        div {
+            class: "flex items-center flex-col",
+            entries.iter().map(|e| rsx!(Entry { entry: e }))
+        }
+    ))
 }
 
 fn main() {
-    dioxus_desktop::launch(app);
+    dioxus_desktop::launch_cfg(
+        app,
+        Config::new()
+            .with_custom_head("<script src=\"https://cdn.tailwindcss.com\"></script>".to_string()),
+    );
 }

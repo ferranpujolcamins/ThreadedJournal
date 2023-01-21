@@ -1,3 +1,5 @@
+#![allow(non_snake_case)]
+
 use crate::model;
 use dioxus::prelude::*;
 
@@ -9,6 +11,7 @@ pub fn Item<'a>(cx: Scope, item: &'a model::Item) -> Element {
         }
     })
 }
+
 
 #[inline_props]
 pub fn Entry<'a>(cx: Scope, entry: &'a model::Entry) -> Element {
