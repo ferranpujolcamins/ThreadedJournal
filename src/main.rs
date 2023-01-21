@@ -1,6 +1,7 @@
 use dioxus::prelude::*;
 use dioxus_desktop::Config;
 use fermi::prelude::*;
+use chrono::Duration;
 
 mod model;
 use model::*;
@@ -14,11 +15,13 @@ static ENTRIES: Atom<Vec<Entry>> = |_| {
         Entry {
             items: vec![Item {
                 text: "I did something".to_string(),
+                duration: Duration::hours(1) + Duration::minutes(15)
             }],
         },
         Entry {
             items: vec![Item {
                 text: "Also today".to_string(),
+                duration: Duration::minutes(30)
             }],
         },
     ]

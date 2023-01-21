@@ -1,6 +1,9 @@
+use chrono::Duration;
+
 #[derive(PartialEq)]
 pub struct Item {
     pub text: String,
+    pub duration: Duration
 }
 
 #[derive(PartialEq)]
