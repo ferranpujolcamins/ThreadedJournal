@@ -1,7 +1,7 @@
+use chrono::Duration;
 use dioxus::prelude::*;
 use dioxus_desktop::Config;
 use fermi::prelude::*;
-use chrono::Duration;
 
 mod model;
 use model::*;
@@ -15,13 +15,13 @@ static ENTRIES: Atom<Vec<Entry>> = |_| {
         Entry {
             items: vec![Item {
                 text: "I did something".to_string(),
-                duration: Duration::hours(1) + Duration::minutes(15)
+                duration: Duration::hours(1) + Duration::minutes(15),
             }],
         },
         Entry {
             items: vec![Item {
                 text: "Also today".to_string(),
-                duration: Duration::minutes(30)
+                duration: Duration::minutes(30),
             }],
         },
     ]
@@ -32,7 +32,7 @@ fn app(cx: Scope) -> Element {
     let entries = use_read(cx.scope, ENTRIES);
     cx.render(rsx!(
         div {
-            class: "min-h-screen flex items-center flex-col bg-white dark:bg-slate-800 text-black dark:text-white",
+            class: "min-h-screen flex items-center flex-col gap-2 bg-white dark:bg-slate-800 text-black dark:text-white",
             entries.iter().map(|e| rsx!(Entry { entry: e }))
         }
     ))

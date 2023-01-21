@@ -20,13 +20,14 @@ pub fn Item<'a>(cx: Scope, item: &'a model::Item) -> Element {
     })
 }
 
-
 #[inline_props]
 pub fn Entry<'a>(cx: Scope, entry: &'a model::Entry) -> Element {
     cx.render(rsx! {
         div {
+            class: "shadow-md rounded dark:bg-slate-700",
             entry.items.iter().map(|i| rsx!(
                 div {
+                    class: "p-2",
                     Item { item: i }
                 }
             ))
