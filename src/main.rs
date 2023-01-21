@@ -32,7 +32,7 @@ fn app(cx: Scope) -> Element {
     let entries = use_read(cx.scope, ENTRIES);
     cx.render(rsx!(
         div {
-            class: "flex items-center flex-col",
+            class: "min-h-screen flex items-center flex-col bg-white dark:bg-slate-800 text-black dark:text-white",
             entries.iter().map(|e| rsx!(Entry { entry: e }))
         }
     ))
