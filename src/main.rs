@@ -9,7 +9,7 @@ use model::*;
 mod component;
 use component::*;
 
-// TODO: AtomFamily instead?
+// TODO: AtomFamily in the future
 static ENTRIES: Atom<Vec<Entry>> = |_| {
     vec![
         Entry {
@@ -33,7 +33,10 @@ fn app(cx: Scope) -> Element {
     cx.render(rsx!(
         div {
             class: "min-h-screen flex items-center flex-col gap-2 bg-white dark:bg-slate-800 text-black dark:text-white",
-            entries.iter().map(|e| rsx!(Entry { entry: e }))
+            entries.iter().map(|e| {
+                let entry_ref = use_ref(cx, || e.clone());
+                rsx!(Entry { entry: entry_ref })
+            })
         }
     ))
 }
