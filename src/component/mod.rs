@@ -19,7 +19,6 @@ pub fn Item<'a>(cx: Scope, item: &'a UseRef<model::Item>) -> Element {
             div { "{item.read().format()}"}
             div {
                 textarea {
-                    class: "border-black dark:border-slate-600 bg-white dark:bg-slate-700 text-black dark:text-white", // TODO: we are repeating dark mode and theme info here
                     rows: "10",
                     cols: "80",
                     value: "{item.read().text}",
@@ -36,7 +35,7 @@ pub fn Item<'a>(cx: Scope, item: &'a UseRef<model::Item>) -> Element {
 pub fn Entry<'a>(cx: Scope, entry: &'a UseRef<model::Entry>) -> Element {
     cx.render(rsx! {
         div {
-            class: "shadow-md rounded dark:bg-slate-700 flex flex-col gap-2",
+            class: "flex flex-col gap-2",
             entry.read().date.format("%d-%m-%Y").to_string()
             entry.read().items.iter().map(|i| {
                 let itemRef = use_ref(cx, || i.clone());
