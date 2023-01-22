@@ -11,6 +11,16 @@ impl model::Item {
     }
 }
 
+pub fn NewEntryButton(cx: Scope) -> Element {
+    cx.render(rsx! {
+        button {
+            div {
+                "+"
+            }
+        }
+    })
+}
+
 #[inline_props]
 pub fn Item<'a>(cx: Scope, item: &'a UseRef<model::Item>) -> Element {
     cx.render(rsx! {
@@ -36,6 +46,9 @@ pub fn Entry<'a>(cx: Scope, entry: &'a UseRef<model::Entry>) -> Element {
     cx.render(rsx! {
         div {
             class: "flex flex-col gap-2",
+            oncontextmenu: |_| {
+                panic!() // TODO: 
+            },
             entry.read().date.format("%d-%m-%Y").to_string()
             entry.read().items.iter().map(|i| {
                 let itemRef = use_ref(cx, || i.clone());

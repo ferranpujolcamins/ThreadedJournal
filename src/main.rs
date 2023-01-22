@@ -32,7 +32,7 @@ static ENTRIES: Atom<Vec<Entry>> = |_| {
 fn app(cx: Scope) -> Element {
     use_init_atom_root(cx);
     let entries = use_read(cx.scope, ENTRIES);
-    let dark_mode = true;
+    let dark_mode = true; // TODO: implement support for this in Dioxus
     let stylesheet = if dark_mode {
         include_str!("../themes/default-dark.css")
     } else {
@@ -42,6 +42,7 @@ fn app(cx: Scope) -> Element {
         style { [rsx!{stylesheet}].into_iter() }
         div {
             class: "min-h-screen flex items-center flex-col gap-2",
+            NewEntryButton {}
             entries.iter().map(|e| {
                 let entry_ref = use_ref(cx, || e.clone());
                 rsx!(Entry { entry: entry_ref })
