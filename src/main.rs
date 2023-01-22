@@ -13,12 +13,14 @@ use component::*;
 static ENTRIES: Atom<Vec<Entry>> = |_| {
     vec![
         Entry {
+            date: chrono::NaiveDate::from_ymd_opt(2023,01,15).unwrap(),
             items: vec![Item {
                 text: "I did something".to_string(),
                 duration: Duration::hours(1) + Duration::minutes(15),
             }],
         },
         Entry {
+            date: chrono::NaiveDate::from_ymd_opt(2023,01,12).unwrap(),
             items: vec![Item {
                 text: "Also today".to_string(),
                 duration: Duration::minutes(30),

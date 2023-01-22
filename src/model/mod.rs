@@ -8,5 +8,6 @@ pub struct Item {
 
 #[derive(PartialEq, Clone)]
 pub struct Entry {
+    pub date: chrono::NaiveDate,
     pub items: Vec<Item>,
 }
